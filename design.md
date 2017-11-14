@@ -1,8 +1,9 @@
 # Python/Sockets message sending
 
 # Functionality
+- Distributed message passing
 - Set time on each Raspberry Pi
-- Accept responses
 - Record local time (on pi) and receieved time (network), log to .txt file
+- Multiprocessing (later) for increased speed
 
-# Calculated delta between local and received time
+# Calculate delta between local and received time
