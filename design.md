@@ -7,3 +7,7 @@
 - Multiprocessing (later) for increased speed
 
 # Calculate delta between local and received time
+
+## Design choices
+- zmq: simpler solution for sockets than using sockets interface directly
+- zmq.PAIR: allows for messages without a reply
