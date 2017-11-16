@@ -1,6 +1,12 @@
+import sys
 import zmq
 from datetime import datetime
 from threading import Timer
+
+# Use this to distribute the socket to connect to
+args = sys.argv
+num_nodes = sys.argv[0]
+node_id = sys.argv[1]
 
 print("Server started")
 

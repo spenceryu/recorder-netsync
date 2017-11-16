@@ -1,7 +1,13 @@
 # https://www.digitalocean.com/community/tutorials/how-to-work-with-the-zeromq-messaging-library
+# https://stackoverflow.com/questions/14713711/zeromq-multiple-publishers-and-listener
 import zmq
 import sys
 from datetime import datetime
+
+# Use this to distribute the socket to connect to
+args = sys.argv
+num_nodes = sys.argv[0]
+node_id = sys.argv[1]
 
 # ZeroMQ Context
 context = zmq.Context()
