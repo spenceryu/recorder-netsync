@@ -5,8 +5,11 @@ from threading import Timer
 
 # Use this to distribute the socket to connect to
 args = sys.argv
-num_nodes = sys.argv[0]
-node_id = sys.argv[1]
+try:
+    num_nodes = sys.argv[0]
+    node_id = sys.argv[1]
+except:
+    pass
 
 print("Server started")
 
