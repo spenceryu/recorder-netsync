@@ -9,17 +9,24 @@ context = zmq.Context()
 # Define the socket using the "Context"
 #sock = context.socket(zmq.REQ) # blocked until response recv
 sock = context.socket(zmq.PAIR)
-sock.connect("tcp://127.0.0.1:5678")
+sock.connect("tcp://127.0.0.1:5670")
 
 # Send a "message" using the socket
 # TODO: set up a timer for this
 #sock.send(" ".join(sys.argv[1:]))
-msg = str(datetime.now())
-sock.send_string("hi")
+sock.send_string("Client connected")
 
-print(sock.recv())
+def readFile(path):
+    with open(path, "r") as f:
+        return f.read()
 
-count = 0
+def writeFile(path, contents):
+    with open(path, "a") as f:
+        f.write(contents)
+
 while True:
-    count += 1
-    sock.send_string("HI %d" % count)
+    local_time = str(datetime.now())
+    write = "server: " + str(sock.recv()) + " | sys: " + local_time
+    print(write)
+    writeFile("log.txt", write + "\n")
+
