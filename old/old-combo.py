@@ -4,26 +4,26 @@ import zmq
 import sys
 from datetime import datetime
 
+## To run script ##
+# % python3 script.py <node_id>
+
 # Use this to distribute the socket to connect to
-args = sys.argv
 try:
-    num_nodes = sys.argv[0]
-    node_id = sys.argv[1]
+    node_id = int(sys.argv[0]) # used to create "offset" in ports
+    print("NODE # %d initialized" % node_id)
 except:
-    pass
+    sys.exit("No arguments given, specify node number.")
 
 # ZeroMQ Context
 context = zmq.Context()
-
-# Define the socket using the "Context"
-#sock = context.socket(zmq.REQ) # blocked until response recv
+sock_port = 5670 + node_id
 sock = context.socket(zmq.PAIR)
-sock.connect("tcp://127.0.0.1:5670")
+host_tcp_ip = "tcp://127.0.0.1:" + str(sock_port) # HOST port
+sock.connect(host_tcp_ip)
 
 # Send a "message" using the socket
 # TODO: set up a timer for this
-#sock.send(" ".join(sys.argv[1:]))
-sock.send_string("Client connected")
+sock.send_string("Client %d connected" % node_id)
 
 def readFile(path):
     with open(path, "r") as f:
@@ -34,8 +34,8 @@ def writeFile(path, contents):
         f.write(contents)
 
 while True:
-    local_time = str(datetime.now())
-    write = "server: " + str(sock.recv()) + " | sys: " + local_time
+    server_time = str(sock.recv())
+    write = "server: " + server_time + " | sys: " + str(datetime.now())
     print(write)
     writeFile("log.txt", write + "\n")
 
