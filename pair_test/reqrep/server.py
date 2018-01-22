@@ -1,15 +1,14 @@
-import zmq, sys
-from datetime import datetime
-# proof of concept
+import zmq
 
-print("SERVER LOADED")
-# set up zmq socket
+# ZeroMQ Context
 context = zmq.Context()
-# we want this to be receiving messages and echoing the message back
-sock = context.socket(zmq.REP)
-sock.connect("tcp://127.0.0.1:8889")
 
+# Define the socket using the "Context"
+sock = context.socket(zmq.REP)
+sock.bind("tcp://127.0.0.1:5678")
+
+# Run a simple "Echo" server
 while True:
-    message = sock.recv()
-    print("ECHO: " + str(message))
-    sock.send_string("echo: " + message)
+    message = str(sock.recv())
+    sock.send_string("Echo: " + message)
+    print ("Echo: " + message)
