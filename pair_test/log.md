@@ -1,5 +1,5 @@
 # Testing all of the socket combinations valid for a connect-bind pair...
-* PUB SUB
+* PUB SUB - can send message from one to many
 * REQ REP - requires response message... so maybe not the fastest
 * REQ ROUTER
 * DEALER ROUTER
