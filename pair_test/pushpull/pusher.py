@@ -3,7 +3,7 @@ import zmq
 
 context = zmq.Context()
 sock = context.socket(zmq.PUSH)
-sock.bind("tcp://127.0.0.1:8888")
+sock.bind("tcp://127.0.0.1:10000")
 
 try:
     while True:
