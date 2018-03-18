@@ -2,6 +2,7 @@
 This version of the subscriber assumes that all clients can be connected to the same WiFi network.
 '''
 import zmq, sys, datetime, time
+from file_io import *
 
 def main():
 
@@ -24,9 +25,12 @@ def main():
         print("Connecting to port %d" % port)
         sock.connect("tcp://%s:%d" % (host_ip, port))
 
+        print("\t  --- Server time --- | --- Client Time ---")
         while True:
             message = sock.recv()
-            print(message)
+            log = str(message) + " | " + str(datetime.datetime.now())
+            print(log)
+            writeFile("log.txt", "\n" + log)
 
     except KeyboardInterrupt:
         # Safe socket closing
