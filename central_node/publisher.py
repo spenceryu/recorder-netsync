@@ -6,18 +6,14 @@ import zmq, sys, datetime, time
 def main():
 
     ### Command Line Parsing ###
-    if (len(sys.argv) != 4):
-        sys.stderr.write("Usage: python3 publisher.py [num_ports] [client_no] [host_ip]\n")
+    if (len(sys.argv) != 3):
+        sys.stderr.write("Usage: python3 publisher.py [num_ports] [host_ip]\n")
         exit(1)
     num_ports = int(sys.argv[1])
-    client_no = int(sys.argv[2])
-    host_ip = sys.argv[3]
-    if (num_ports <= client_no): # client numbers should start from 0
-        sys.stderr.write("Error: client number must be less than number of ports.\n")
-        exit(1)
+    host_ip = sys.argv[2]
 
     ### Create Publisher Sockets ###
-    print("Clients: %d\nClient Number: %d" %(num_ports, client_no))
+    print("Clients: %d" %(num_ports))
 
     context = zmq.Context()
     port = 8888

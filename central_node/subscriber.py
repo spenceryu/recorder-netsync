@@ -7,11 +7,12 @@ from file_io import *
 def main():
 
     ### Command Line Parsing ###
-    if (len(sys.argv) != 3):
-        sys.stderr.write("Usage: python3 subscriber.py [client_no] [host_ip]\n")
+    if (len(sys.argv) != 4):
+        sys.stderr.write("Usage: python3 subscriber.py [num_ports] [client_no] [host_ip]\n")
         exit(1)
-    client_no = int(sys.argv[1])
-    host_ip = sys.argv[2]
+    num_ports = int(sys.argv[1])
+    client_no = int(sys.argv[2])
+    host_ip = sys.argv[3]
     sock = 0
 
     ### Create Subscriber Sockets ###
@@ -28,9 +29,16 @@ def main():
         print("\t  --- Server time --- | --- Client Time ---")
         while True:
             message = sock.recv()
-            log = str(message) + " | " + str(datetime.datetime.now())
-            print(log)
-            writeFile("log.txt", "\n" + log)
+            curr_time = str(datetime.datetime.now())
+            log = str(message) + " | " + curr_time
+
+            # Extract seconds from datetime
+            split_time = (curr_time.split("."))[0]
+            sec = int(split_time[len(split_time) - 2: len(split_time)])
+
+            if (sec % num_ports == client_no):
+                print(log)
+                writeFile("log.txt", "\n" + log)
 
     except KeyboardInterrupt:
         # Safe socket closing
