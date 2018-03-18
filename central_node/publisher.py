@@ -1,3 +1,6 @@
+'''
+This version of the publisher assumes that all clients can be connected to the same WiFi network.
+'''
 import zmq, sys, datetime, time
 
 def main():
