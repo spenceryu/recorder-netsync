@@ -1,7 +1,3 @@
-'''
-Old version of file - this contains useful snippets to integrate into main
-'''
-
 ### SERVER ###
 import sys
 import zmq

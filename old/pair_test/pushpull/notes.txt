@@ -1,1 +1,0 @@
-pipeline pattern should be useful, as it connects a large number of nodes
