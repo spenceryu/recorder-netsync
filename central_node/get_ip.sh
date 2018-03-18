@@ -3,4 +3,3 @@
 
 echo Getting ip address of device... most likely 192.168.x.x
 sudo ifconfig | grep "inet addr"
-
