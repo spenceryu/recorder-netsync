@@ -3,7 +3,7 @@ This version of the subscriber assumes that not all clients can be connected to 
 '''
 import zmq, sys, datetime, time
 from file_io import *
-from wifi import *
+from wifi import Cell, Scheme
 
 def main():
 
@@ -22,11 +22,23 @@ def main():
     try:
         context = zmq.Context()
 
+        ### Register the wifi networks ###
+        wifi add AP1 Pi_AP
+        wifi add AP2 Pi_AP2
+        wifi add AP3 Pi_AP3
+        # Register more as necessary
+
         while True:
-            ### Using wifi module, connect to appropriate network ###
-            # https://wifi.readthedocs.io/en/latest/
-            # https://stackoverflow.com/questions/20470626/python-script-for-raspberrypi-to-connect-wifi-automatically
-            ### if (time condition satisfied):
+            ### Parse the date/time ###
+            split_time = (curr_time.split("."))[0]
+            sec = int(split_time[len(split_time) - 2: len(split_time)]) # seconds is temporary
+
+            if (sec % num_ports == client_no):
+                ### Using wifi module, connect to appropriate network ###
+                # https://wifi.readthedocs.io/en/latest/
+                # https://stackoverflow.com/questions/20470626/python-script-for-raspberrypi-to-connect-wifi-automatically
+                wifi connect -a AP1 # Hardcoded for testing purposes
+
                 ### Create a socket ###
                 sock = context.socket(zmq.SUB)
                 sock.setsockopt_string(zmq.SUBSCRIBE, "") # accepts messages with any prefix
@@ -36,7 +48,7 @@ def main():
 
                 print("\t  --- Server time --- | --- Client Time ---")
 
-                ### while (time condition satisfied):
+                while (sec % num_ports == client_no):
                     ### Receive data ###
                     message = sock.recv()
                     curr_time = str(datetime.datetime.now())
