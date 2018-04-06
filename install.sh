@@ -21,4 +21,5 @@ sudo make install
 sudo ldconfig
 
 sudo apt-get install python-dev
+sudo pip install pyzmq
 sudo pip3 install pyzmq
