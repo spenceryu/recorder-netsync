@@ -1,3 +1,5 @@
+#!/bin/bash
+# Run "chmod 755 install.sh" to grant write, modify, execute
 # run this on raspberry pi
 # https://github.com/MonsieurV/ZeroMQ-RPi
 
