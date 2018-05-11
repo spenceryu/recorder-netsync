@@ -17,4 +17,3 @@ chmod 755 install.sh
 - Distributed message passing
 - Set time on each Raspberry Pi
 - Record local time (on pi) and receieved time (network), log to .txt file
-- Calculate delta between local and received time
