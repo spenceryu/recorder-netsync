@@ -2,6 +2,9 @@
 # Run "chmod 755 install.sh" to grant write, modify, execute
 # run this on raspberry pi
 # https://github.com/MonsieurV/ZeroMQ-RPi
+#
+# This script installs zeromq (ZMQ) and its associated python3 bindings on
+# a Raspberry Pi.
 
 sudo apt-get install libtool pkg-config build-essential autoconf automake
 

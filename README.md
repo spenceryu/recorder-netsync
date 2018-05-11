@@ -9,7 +9,8 @@ Synchronization software for CMU Navlab traffic recording boxes (Python 3)
 % python3 server.py
 
 # Installation on Raspberry Pi:
-See link: https://github.com/MonsieurV/ZeroMQ-RPi
+chmod 755 install.sh
+./install.sh
 
 # Functionality
 - Distributed message passing
