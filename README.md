@@ -10,6 +10,7 @@ Synchronization software for CMU Navlab traffic recording boxes (Python 3)
 
 # Installation on Raspberry Pi:
 chmod 755 install.sh
+
 ./install.sh
 
 # Functionality
